@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Library</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>📝 Prompt Library</h1>
+                <button class="btn-new" id="btnNewPrompt">+ New Prompt</button>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search prompts..." class="search-input">
+            </div>
+            
+            <div class="categories">
+                <div class="category-section">
+                    <h3>Categories</h3>
+                    <ul class="category-list" id="categoryList">
+                        <li class="category-item active" data-category="all">All Prompts</li>
+                        <li class="category-item" data-category="fiverr">Fiverr</li>
+                        <li class="category-item" data-category="portraits">Portraits</li>
+                        <li class="category-item" data-category="ai">AI Generation</li>
+                        <li class="category-item" data-category="other">Other</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="prompts-list" id="promptsList">
+                <!-- Prompts will be dynamically loaded here -->
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header" id="contentHeader" style="display: none;">
+                <div class="header-info">
+                    <h2 id="promptTitle">Select a prompt</h2>
+                    <div class="prompt-meta">
+                        <span class="category-badge" id="promptCategory"></span>
+                        <span class="date-badge" id="promptDate"></span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-icon" id="btnEdit" title="Edit">✏️</button>
+                    <button class="btn-icon" id="btnCopy" title="Copy">📋</button>
+                    <button class="btn-icon" id="btnDelete" title="Delete">🗑️</button>
+                </div>
+            </div>
+            
+            <div class="content-body" id="contentBody">
+                <div class="empty-state">
+                    <div class="empty-icon">📝</div>
+                    <h3>Welcome to Prompt Library</h3>
+                    <p>Select a prompt from the sidebar or create a new one to get started.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modal for New/Edit Prompt -->
+    <div class="modal" id="promptModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">New Prompt</h2>
+                <button class="btn-close" id="btnCloseModal">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="promptForm">
+                    <div class="form-group">
+                        <label for="promptName">Title</label>
+                        <input type="text" id="promptName" required placeholder="Enter prompt title...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="promptCategorySelect">Category</label>
+                        <select id="promptCategorySelect" required>
+                            <option value="fiverr">Fiverr</option>
+                            <option value="portraits">Portraits</option>
+                            <option value="ai">AI Generation</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="promptContent">Prompt Content</label>
+                        <textarea id="promptContent" rows="15" required placeholder="Enter your prompt here..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="promptTags">Tags (comma-separated)</label>
+                        <input type="text" id="promptTags" placeholder="e.g., thumbnail, portrait, ai, fiverr">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="btnCancel">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Prompt</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
+
